@@ -6,31 +6,47 @@ import pl.ttpsc.solid.dip.weathertracker.solution.enums.DeviceType;
 import pl.ttpsc.solid.dip.weathertracker.solution.enums.WeatherConditions;
 
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class WeatherTracker implements Tracker {
 
     private WeatherConditions currentConditions;
-    private List<Device> deviceList;
-    private Map<DeviceType, WeatherConditions> weatherListenersMap;
+    private List<Device> devices;
+    private Set<Listener> listeners;
 
-    public WeatherTracker(List<Device> deviceList, Map<DeviceType, WeatherConditions> weatherListenersMap) {
-        this.deviceList = deviceList;
-        this.weatherListenersMap = weatherListenersMap;
+    public WeatherTracker(List<Device> devices, Set<Listener> listeners) {
+        this.devices = devices;
+        this.listeners = listeners;
     }
 
+    @Override
+    public WeatherConditions getCurrentConditions() {
+        return currentConditions;
+    }
+
+    @Override
     public void setCurrentConditions(WeatherConditions conditions) {
         this.currentConditions = conditions;
-        deviceList.stream()
+        devices.stream()
                 .filter(device -> getDeviceTypesByConditions(conditions).contains(device.getDeviceType()))
                 .forEach(device -> System.out.println(device.generateWeatherAlert(conditions)));
     }
 
     private List<DeviceType> getDeviceTypesByConditions(WeatherConditions weatherConditions) {
-        return weatherListenersMap.entrySet().stream()
-                .filter(entry -> entry.getValue().equals(weatherConditions))
-                .map(Map.Entry::getKey)
+        return listeners.stream()
+                .filter(entry -> entry.weatherConditions.equals(weatherConditions))
+                .map(entry -> entry.deviceType)
                 .collect(Collectors.toList());
+    }
+
+    public static class Listener {
+        DeviceType deviceType;
+        WeatherConditions weatherConditions;
+
+        public Listener(DeviceType deviceType, WeatherConditions weatherConditions) {
+            this.deviceType = deviceType;
+            this.weatherConditions = weatherConditions;
+        }
     }
 }
