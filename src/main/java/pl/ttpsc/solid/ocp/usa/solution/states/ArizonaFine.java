@@ -1,6 +1,6 @@
 package pl.ttpsc.solid.ocp.usa.solution.states;
 
-public class Arizona implements StateFine {
+public class ArizonaFine implements StateFine {
 
     @Override
     public double calcSpeedLimitFine(double speedMiles) {
