@@ -1,8 +1,8 @@
 package pl.ttpsc.solid.dip.weathertracker.solution.trackers;
 
-import pl.ttpsc.solid.dip.weathertracker.solution.enums.WeatherConditions;
+import pl.ttpsc.solid.dip.weathertracker.solution.enums.WeatherCondition;
 
 public interface Tracker {
-    WeatherConditions getCurrentConditions();
-    void setCurrentConditions(WeatherConditions conditions);
+    WeatherCondition getCurrentConditions();
+    void setCurrentConditions(WeatherCondition conditions);
 }

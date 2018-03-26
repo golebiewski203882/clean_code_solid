@@ -1,9 +1,15 @@
 package pl.ttpsc.solid.dip.weathertracker.solution.devices;
 
-import pl.ttpsc.solid.dip.weathertracker.solution.enums.WeatherConditions;
-import pl.ttpsc.solid.dip.weathertracker.solution.enums.DeviceType;
+import pl.ttpsc.solid.dip.weathertracker.solution.enums.WeatherCondition;
+
+import java.util.Set;
 
 public interface Device {
-    String generateWeatherAlert(WeatherConditions conditions);
-    DeviceType getDeviceType();
+    String generateWeatherAlert(WeatherCondition condition);
+
+    Set<WeatherCondition> getSubscribedWeathers();
+
+    void subscribeToWeather(WeatherCondition condition);
+
+    void unsubscribeToWeather(WeatherCondition condition);
 }

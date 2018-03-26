@@ -7,8 +7,8 @@ public enum ShapeName {
 
     private String displayName;
 
-    ShapeName(String dispalyName) {
-        this.displayName = dispalyName;
+    ShapeName(String displayName) {
+        this.displayName = displayName;
     }
 
     public String getDisplayName() {

@@ -1,11 +1,11 @@
 package pl.ttpsc.solid.dip.weathertracker.solution.enums;
 
-public enum WeatherConditions {
+public enum WeatherCondition {
     SUNNY("sunny weather"), RAINY("rainy weather");
 
     private String description;
 
-    WeatherConditions(String description) {
+    WeatherCondition(String description) {
         this.description = description;
     }
 

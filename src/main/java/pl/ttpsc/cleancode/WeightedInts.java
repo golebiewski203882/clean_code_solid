@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class DoIt {
+public class WeightedInts {
 
     private Map<Integer, Integer> weightedKeys = new HashMap<>();
     private int minKey = Integer.MAX_VALUE;
     private int maxKey = Integer.MIN_VALUE;
 
-    public DoIt(List<Integer> keys) {
+    public WeightedInts(List<Integer> keys) {
         keys.forEach(this::putAndSetWeight);
     }
 
